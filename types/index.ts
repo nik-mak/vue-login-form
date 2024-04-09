@@ -1,14 +1,20 @@
-export enum TodoStatus {
-  active,
-  complete,
+export interface SignUpForm {
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  password: string | null;
+  errors: Array<Errors>;
 }
 
-export interface TodoItem {
-  description: string;
-  status: TodoStatus;
+export interface LoginForm {
+  email: string | null;
+  password: string | null;
+  errors: Array<Errors>;
 }
 
-export interface TodoInput {
-  text: string | null;
-  error: boolean;
+export enum Errors {
+  Email = "InvalidEmail",
+  Password = "InvalidPassword",
+  FirstName = "InvalidFirstName",
+  LastName = "InvalidLastName",
 }

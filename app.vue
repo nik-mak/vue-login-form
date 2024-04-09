@@ -1,9 +1,7 @@
 <template>
-  <div class="flex flex-col items-center w-full h-screen bg-[#0e121d] p-4">
-    <div class="text-4xl mt-24 uppercase text-gray-400">To-do List</div>
-
-    <TodoInput />
-
-    <TodoTable />
+  <div
+    class="w-screen h-screen bg-cover fixed top-0 left-0 right-0 bg-[url(https://mrwallpaper.com/images/hd/purple-wisteria-tree-3g8tvi56tj7nmiit.jpg)]"
+  >
+    <PageAuthenticate />
   </div>
 </template>
