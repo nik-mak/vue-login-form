@@ -1,13 +1,15 @@
 <template>
   <div>
-    <form>
+    <form
+      @submit.prevent="handleLogin(loginForm)"
+      @keyup.enter="handleLogin(loginForm)"
+    >
       <BaseInput
         label="Email"
-        type="email"
+        type="text"
         :model-value="loginForm.email"
         :show-error="loginForm.errors.includes(Errors.Email)"
         @input="loginForm.email = $event"
-        @keyup.enter="handleLogin(loginForm)"
       />
 
       <BaseInput
@@ -16,29 +18,28 @@
         :model-value="loginForm.password"
         :show-error="loginForm.errors.includes(Errors.Password)"
         @input="loginForm.password = $event"
-        @keyup.enter="handleLogin(loginForm)"
       />
-    </form>
 
-    <div class="w-full text-center">
-      <div>
-        <button
-          @click="handleLogin(loginForm)"
-          class="text-gray-300 mb-4 w-full bg-purple-500 p-2 rounded-md hover:bg-purple-400"
-        >
-          Login
-        </button>
+      <div class="w-full text-center">
+        <div>
+          <button
+            type="submit"
+            class="text-gray-300 mb-4 w-full bg-purple-500 p-2 rounded-md hover:bg-purple-400 border border-purple-600"
+          >
+            Login
+          </button>
+        </div>
+        <p class="text-gray-300">
+          Don't have an account?
+          <span
+            class="text-blue-500 hover:cursor-pointer hover:text-blue-400"
+            @click="$emit('signup', loginForm.email)"
+          >
+            Sign up
+          </span>
+        </p>
       </div>
-      <p class="text-gray-300">
-        Don't have an account?
-        <span
-          class="text-blue-500 hover:cursor-pointer hover:text-blue-400"
-          @click="$emit('signup', loginForm.email)"
-        >
-          Sign up
-        </span>
-      </p>
-    </div>
+    </form>
   </div>
 </template>
 

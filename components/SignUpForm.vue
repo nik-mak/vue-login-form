@@ -1,13 +1,15 @@
 <template>
   <div>
-    <form>
+    <form
+      @submit.prevent="handleSignUp(signUpForm)"
+      @keyup.enter="handleSignUp(signUpForm)"
+    >
       <BaseInput
         label="First Name"
         type="text"
         :model-value="signUpForm.firstName"
         :show-error="signUpForm.errors.includes(Errors.FirstName)"
         @input="signUpForm.firstName = $event"
-        @keyup.enter="handleSignUp(signUpForm)"
       />
 
       <BaseInput
@@ -16,16 +18,14 @@
         :model-value="signUpForm.lastName"
         :show-error="signUpForm.errors.includes(Errors.LastName)"
         @input="signUpForm.lastName = $event"
-        @keyup.enter="handleSignUp(signUpForm)"
       />
 
       <BaseInput
         label="Email"
-        type="email"
+        type="text"
         :model-value="signUpForm.email"
         :show-error="signUpForm.errors.includes(Errors.Email)"
         @input="signUpForm.email = $event"
-        @keyup.enter="handleSignUp(signUpForm)"
       />
 
       <BaseInput
@@ -34,29 +34,28 @@
         :model-value="signUpForm.password"
         :show-error="signUpForm.errors.includes(Errors.Password)"
         @input="signUpForm.password = $event"
-        @keyup.enter="handleSignUp(signUpForm)"
       />
-    </form>
 
-    <div class="w-full text-center">
-      <div>
-        <button
-          @click="handleSignUp(signUpForm)"
-          class="text-gray-300 mb-4 w-full bg-purple-500 p-2 rounded-md hover:bg-purple-400"
-        >
-          Sign Up
-        </button>
+      <div class="w-full text-center">
+        <div>
+          <button
+            @click="handleSignUp(signUpForm)"
+            class="text-gray-300 mb-4 w-full bg-purple-500 p-2 rounded-md hover:bg-purple-400"
+          >
+            Sign Up
+          </button>
+        </div>
+        <p class="text-gray-300">
+          Already have an account?
+          <span
+            class="text-blue-500 hover:cursor-pointer hover:text-blue-400"
+            @click="$emit('login', signUpForm.email)"
+          >
+            Log in
+          </span>
+        </p>
       </div>
-      <p class="text-gray-300">
-        Already have an account?
-        <span
-          class="text-blue-500 hover:cursor-pointer hover:text-blue-400"
-          @click="$emit('login', signUpForm.email)"
-        >
-          Log in
-        </span>
-      </p>
-    </div>
+    </form>
   </div>
 </template>
 
